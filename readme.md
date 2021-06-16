@@ -19,10 +19,8 @@ He, Kaiming, et al. "Deep residual learning for image recognition." Proceedings 
 Hu, Jie, Li Shen, and Gang Sun. "Squeeze-and-excitation networks." Proceedings of the IEEE conference on computer vision and pattern recognition. 2018.
 
 ## **Author**
-| Name         | Email                  |  
-| :----------- | :----------- | 
-| Taiwei Shi   | maksimstw@gatech.edu   |
-| Yitong Li    | Text                   | 
-| Ruikang Li   | Text                   | 
-| Xi Lin       | Xlin315@gatech.edu     | 
-| Kelin Yu     | Text                   |
+Taiwei Shi: maksimstw@gatech.edu  
+Yitong Li: 
+Ruikang Li:   
+Xi Lin: Xlin315@gatech.edu  
+Kelin Yu: 
