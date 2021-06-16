@@ -15,7 +15,7 @@ ResNet performs incredibly well in most of the computer vision tasks, so we expe
 
 ## **References**
 Dosovitskiy, Alexey, et al. "An image is worth 16x16 words: Transformers for image recognition at scale." arXiv preprint arXiv:2010.11929 (2020).
-Azizov Said. "Road Sign Recognition." Kaggle. Retrieved June 13, 2021 from https://www.kaggle.com/michaelcripman/road-sign-recognition.  
+Azizov, Said. "Road Sign Recognition." Kaggle. Retrieved June 13, 2021 from https://www.kaggle.com/michaelcripman/road-sign-recognition.  
 He, Kaiming, et al. "Deep residual learning for image recognition." Proceedings of the IEEE conference on computer vision and pattern recognition. 2016.  
 Hu, Jie, Li Shen, and Gang Sun. "Squeeze-and-excitation networks." Proceedings of the IEEE conference on computer vision and pattern recognition. 2018.
 
