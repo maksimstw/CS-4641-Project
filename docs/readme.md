@@ -24,6 +24,6 @@ Hu, Jie, Li Shen, and Gang Sun. "Squeeze-and-excitation networks." Proceedings o
 | ----------- | ---------------      |  
 | Taiwei Shi  | maksimstw@gatech.edu |  
 | Yitong Li   |                      |  
-| Ruikang Li  |                      |  
+| Ruikang Li  | rakanli@gatech.edu   |  
 | Xi Lin      | xlin315@gatech.edu   |
 | Kelin Yu    | kyu85@gatech.edu                     |
