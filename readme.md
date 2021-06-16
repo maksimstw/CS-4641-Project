@@ -18,20 +18,11 @@ Dosovitskiy, Alexey, et al. "An image is worth 16x16 words: Transformers for ima
 He, Kaiming, et al. "Deep residual learning for image recognition." Proceedings of the IEEE conference on computer vision and pattern recognition. 2016.  
 Hu, Jie, Li Shen, and Gang Sun. "Squeeze-and-excitation networks." Proceedings of the IEEE conference on computer vision and pattern recognition. 2018.
 
-## **Getting Started**
-### **Dependencies**
-* Python 3.5 or higher
-* PyTorch
-* numpy
-
-### **Executing program**
-Run main.py
-
 ## **Author**
-| Name        | Email                |
-| ----------- | ---------------      |
-| Taiwei Shi  | maksimstw@gatech.edu |
-| Yitong Li   |                      |
-| Ruikang Li  |                      |
+| Name        | Email                |  
+| ----------- | ---------------      |  
+| Taiwei Shi  | maksimstw@gatech.edu |  
+| Yitong Li   |                      |  
+| Ruikang Li  |                      |  
 | Xi Lin      |                      |
 | Kelin Yu    |                      |
