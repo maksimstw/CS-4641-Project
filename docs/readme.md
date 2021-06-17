@@ -1,5 +1,5 @@
 ## **Background**
-In recent years, there has been a rising interest in electric cars and autopilots. As with any vehicle, an autonomous vehicle cannot merely follow the information on the map. It also needs to actively adapt to the changing road conditions. Most of the conditions are conveyed through road signs, and thus an autopilot system must be able to detect and understand road signs fast and accurately. This research project tries to implement the state-of-the-art compute vision algorithms, namely, vision transformer (ViT) and residual network (ResNet), and finetune them specifically for road sign detection. 
+In recent years, there has been a rising interest in electric cars and autopilots. As with any vehicle, an autonomous vehicle cannot merely follow the information on the map. It also needs to actively adapt to the changing road conditions. Most of the conditions are conveyed through road signs, and thus an autopilot system must be able to detect and understand road signs fast and accurately. This research project tries to implement the state-of-the-art computer vision algorithms, namely, vision transformer (ViT) and residual network (ResNet), and finetune them specifically for road sign detection. 
 
 ## **Problem Definition**
 Given an image of a road sign, the deep learning model needs to recognize the road sign. Since this model is for an autopilot system, the deep learning model, ideally, should be able to detect and recognize the road sign quickly and accurately. 
@@ -23,7 +23,7 @@ Hu, Jie, Li Shen, and Gang Sun. "Squeeze-and-excitation networks." Proceedings o
 | Name        | Email                |  
 | ----------- | ---------------      |  
 | Taiwei Shi  | maksimstw@gatech.edu |  
-| Yitong Li   |                      |  
-| Ruikang Li  |                      |  
+| Yitong Li   | yli3277@gatech.edu   |  
+| Ruikang Li  | rakanli@gatech.edu   |  
 | Xi Lin      | xlin315@gatech.edu   |
-| Kelin Yu    |                      |
+| Kelin Yu    | kyu85@gatech.edu     |
