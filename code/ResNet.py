@@ -1,0 +1,89 @@
+import torch
+import torchvision
+import time
+import os
+import copy
+import torch.nn as nn
+import torch.optim as optim
+import matplotlib.pyplot as plt
+import numpy as np
+from utils import RoadSignDataset
+from torchvision import datasets, models, transforms
+from torch.utils.data import DataLoader, Dataset
+from torch.optim import lr_scheduler
+
+# Set Device
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+os.environ['KMP_DUPLICATE_LIB_OK'] = 'True'
+
+# Hyperparameters
+in_channel = 3
+num_classes = 182
+learning_rate = 3e-4
+batch_size = 128
+num_epochs = 1
+
+# Load Data
+dataset = RoadSignDataset(csv_file='data/labels.csv', root_dir='data/train_images',
+                          transform=transforms.ToTensor())
+
+train_set, val_set = torch.utils.data.random_split(dataset, [36850, 9213])
+train_loader = DataLoader(dataset=train_set, batch_size=batch_size, shuffle=True)
+val_loader = DataLoader(dataset=val_set, batch_size=batch_size, shuffle=True)
+
+# Model
+model = models.resnet18(pretrained=True)
+
+# Loss and optimizer
+criterion = nn.CrossEntropyLoss()
+optimizer = optim.Adam(model.parameters(), lr=learning_rate)
+
+for epoch in range(num_epochs):
+    losses = []
+
+    for batch_idx, (data, target) in enumerate(train_loader):
+        # get data to cuda if possible
+        data = data.to(device=device)
+        targets = targets.to(device=device)
+
+        # forward pass
+        scores = model(data)
+        loss = criterion(scores, targets)
+
+        losses.append(loss.item())
+
+        # backward
+        optimizer.zero_grad()
+        loss.backward()
+
+        # gradient descent
+        optimizer.step()
+
+    print(f'Epoch {epoch}: cost is {sum(losses) / len(losses)}')
+
+
+def check_accuracy(loader, model):
+    num_correct = 0
+    num_samples = 0
+    model.eval()
+
+    with torch.no_grad():
+        for x, y in loader:
+            x = x.to(device=device)
+            y = y.to(device=device)
+
+            scores = model(x)
+            _, predictions = scores.max(1)
+            num_correct += (predictions == y).sum()
+            num_samples += predictions.size(0)
+
+        print(f'Got {num_correct} / {num_samples} with accuracy {float(num_correct) / float(num_samples) * 100}')
+
+    model.train()
+
+
+print("Checking accuracy on training set")
+check_accuracy(train_loader, model)
+
+print("Checking accuracy on validation set")
+check_accuracy(val_loader, model)
