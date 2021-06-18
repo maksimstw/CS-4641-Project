@@ -14,7 +14,6 @@ from torch.optim import lr_scheduler
 
 # Set Device
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-os.environ['KMP_DUPLICATE_LIB_OK'] = 'True'
 
 # Hyperparameters
 in_channel = 3
@@ -23,9 +22,18 @@ learning_rate = 3e-4
 batch_size = 128
 num_epochs = 1
 
+# Data Transform
+normalize = transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
+data_transforms = {
+    transforms.RandomResizedCrop(224),
+    transforms.RandomHorizontalFlip(),
+    transforms.ToTensor(),
+    normalize,
+}
+
 # Load Data
 dataset = RoadSignDataset(csv_file='data/labels.csv', root_dir='data/train_images',
-                          transform=transforms.ToTensor())
+                          transform=data_transforms)
 
 train_set, val_set = torch.utils.data.random_split(dataset, [36850, 9213])
 train_loader = DataLoader(dataset=train_set, batch_size=batch_size, shuffle=True)
@@ -41,7 +49,7 @@ optimizer = optim.Adam(model.parameters(), lr=learning_rate)
 for epoch in range(num_epochs):
     losses = []
 
-    for batch_idx, (data, target) in enumerate(train_loader):
+    for batch_idx, (data, targets) in enumerate(train_loader):
         # get data to cuda if possible
         data = data.to(device=device)
         targets = targets.to(device=device)
