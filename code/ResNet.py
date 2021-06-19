@@ -24,12 +24,13 @@ num_epochs = 1
 
 # Data Transform
 normalize = transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
-data_transforms = {
+data_transforms = transforms.Compose([
+    transforms.ToPILImage(),
     transforms.RandomResizedCrop(224),
     transforms.RandomHorizontalFlip(),
     transforms.ToTensor(),
     normalize,
-}
+])
 
 # Load Data
 dataset = RoadSignDataset(csv_file='data/labels.csv', root_dir='data/train_images',
@@ -40,7 +41,7 @@ train_loader = DataLoader(dataset=train_set, batch_size=batch_size, shuffle=True
 val_loader = DataLoader(dataset=val_set, batch_size=batch_size, shuffle=True)
 
 # Model
-model = models.resnet18(pretrained=True)
+model = models.resnet18(pretrained=True).to(device=device)
 
 # Loss and optimizer
 criterion = nn.CrossEntropyLoss()
