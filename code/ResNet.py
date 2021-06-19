@@ -35,7 +35,7 @@ data_transforms = {
 dataset = RoadSignDataset(csv_file='data/labels.csv', root_dir='data/train_images',
                           transform=data_transforms)
 
-train_set, val_set = torch.utils.data.random_split(dataset, [36850, 9213])
+train_set, val_set = torch.utils.data.random_split(dataset, [36833, 9229])
 train_loader = DataLoader(dataset=train_set, batch_size=batch_size, shuffle=True)
 val_loader = DataLoader(dataset=val_set, batch_size=batch_size, shuffle=True)
 
