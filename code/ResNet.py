@@ -49,34 +49,13 @@ model = models.resnet18(pretrained=True).to(device=device)
 criterion = nn.CrossEntropyLoss()
 optimizer = optim.Adam(model.parameters(), lr=learning_rate)
 
-for epoch in range(num_epochs):
-    losses = []
-
-    for batch_idx, (data, targets) in tqdm(enumerate(train_loader)):
-        # get data to cuda if possible
-        data = data.to(device=device)
-        targets = targets.to(device=device)
-
-        # forward pass
-        scores = model(data)
-        loss = criterion(scores, targets)
-
-        losses.append(loss.item())
-
-        # backward
-        optimizer.zero_grad()
-        loss.backward()
-
-        # gradient descent
-        optimizer.step()
-
-    print(f'Epoch {epoch}: cost is {sum(losses) / len(losses)}')
-
 
 def check_accuracy(loader, model):
     num_correct = 0
     num_samples = 0
     model.eval()
+
+    print("Checking accuracy...")
 
     with torch.no_grad():
         for x, y in loader:
@@ -99,8 +78,32 @@ def check_accuracy(loader, model):
     model.train()
 
 
-print("Checking accuracy on training set...")
+for epoch in range(num_epochs):
+    losses = []
+
+    for batch_idx, (data, targets) in tqdm(enumerate(train_loader)):
+        # get data to cuda if possible
+        data = data.to(device=device)
+        targets = targets.to(device=device)
+
+        # forward pass
+        scores = model(data)
+        loss = criterion(scores, targets)
+
+        losses.append(loss.item())
+
+        # backward
+        optimizer.zero_grad()
+        loss.backward()
+
+        # gradient descent
+        optimizer.step()
+
+    print(f'Epoch {epoch}: cost is {sum(losses) / len(losses)}')
+    check_accuracy(train_loader, model)
+
+print("Checking final accuracy on training set...")
 check_accuracy(train_loader, model)
 
-print("Checking accuracy on validation set...")
+print("Checking final accuracy on validation set...")
 check_accuracy(val_loader, model)
