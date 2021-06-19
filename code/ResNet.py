@@ -7,6 +7,7 @@ import torch.nn as nn
 import torch.optim as optim
 import matplotlib.pyplot as plt
 import numpy as np
+from tqdm import tqdm
 from utils import RoadSignDataset
 from torchvision import datasets, models, transforms
 from torch.utils.data import DataLoader, Dataset
@@ -50,7 +51,7 @@ optimizer = optim.Adam(model.parameters(), lr=learning_rate)
 for epoch in range(num_epochs):
     losses = []
 
-    for batch_idx, (data, targets) in enumerate(train_loader):
+    for batch_idx, (data, targets) in tqdm(enumerate(train_loader)):
         # get data to cuda if possible
         data = data.to(device=device)
         targets = targets.to(device=device)
