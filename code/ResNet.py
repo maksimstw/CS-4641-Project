@@ -58,7 +58,7 @@ def check_accuracy(loader, model):
     print("Checking accuracy...")
 
     with torch.no_grad():
-        for x, y in loader:
+        for x, y in tqdm(loader):
             x = x.to(device=device)
             y = y.to(device=device)
 
@@ -69,9 +69,12 @@ def check_accuracy(loader, model):
 
         print(f'Got {num_correct} / {num_samples} with accuracy {float(num_correct) / float(num_samples) * 100}')
 
-        f1 = f1_score(y_true=y.cpu(), y_pred=predictions.cpu(), average='macro')
-        recall = recall_score(y_true=y.cpu(), y_pred=predictions.cpu(), average='macro')
-        precision = precision_score(y_true=y.cpu(), y_pred=predictions.cpu(), average='macro')
+        f1 = f1_score(y_true=y.cpu(), y_pred=predictions.cpu(),
+                      average='macro', labels=np.unique(predictions))
+        recall = recall_score(y_true=y.cpu(), y_pred=predictions.cpu(),
+                              average='macro', labels=np.unique(predictions))
+        precision = precision_score(y_true=y.cpu(), y_pred=predictions.cpu(),
+                                    average='macro', labels=np.unique(predictions))
 
         print(f'Got macro f1 {f1} with recall {recall} and precision {precision}')
 
