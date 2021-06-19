@@ -70,11 +70,11 @@ def check_accuracy(loader, model):
         print(f'Got {num_correct} / {num_samples} with accuracy {float(num_correct) / float(num_samples) * 100}')
 
         f1 = f1_score(y_true=y.cpu(), y_pred=predictions.cpu(),
-                      average='macro', labels=np.unique(predictions))
+                      average='macro', labels=np.unique(predictions.cpu()))
         recall = recall_score(y_true=y.cpu(), y_pred=predictions.cpu(),
-                              average='macro', labels=np.unique(predictions))
+                              average='macro', labels=np.unique(predictions.cpu()))
         precision = precision_score(y_true=y.cpu(), y_pred=predictions.cpu(),
-                                    average='macro', labels=np.unique(predictions))
+                                    average='macro', labels=np.unique(predictions.cpu()))
 
         print(f'Got macro f1 {f1} with recall {recall} and precision {precision}')
 
