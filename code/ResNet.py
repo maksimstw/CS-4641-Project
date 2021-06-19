@@ -1,18 +1,10 @@
-import torch
-import torchvision
-import time
-import os
-import copy
 import torch.nn as nn
 import torch.optim as optim
-import matplotlib.pyplot as plt
-import numpy as np
+import torch.hub
 from tqdm import tqdm
-from utils import RoadSignDataset
-from torchvision import datasets, models, transforms
+from utils import RoadSignDataset, check_accuracy, save_checkpoint
+from torchvision import models, transforms
 from torch.utils.data import DataLoader, Dataset
-from torch.optim import lr_scheduler
-from sklearn.metrics import f1_score, recall_score, precision_score
 
 # Set Device
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -21,8 +13,9 @@ device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 in_channel = 3
 num_classes = 182
 learning_rate = 3e-4
-batch_size = 128
+batch_size = 32
 num_epochs = 10
+load_model = False
 
 # Data Transform
 normalize = transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
@@ -44,45 +37,30 @@ val_loader = DataLoader(dataset=val_set, batch_size=batch_size, shuffle=True)
 
 # Model
 model = models.resnet18(pretrained=True).to(device=device)
+# model = torch.hub.load('moskomule/senet.pytorch', 'se_resnet50', num_classes=10).to(device=device)
 
 # Loss and optimizer
 criterion = nn.CrossEntropyLoss()
 optimizer = optim.Adam(model.parameters(), lr=learning_rate)
 
 
-def check_accuracy(loader, model):
-    num_correct = 0
-    num_samples = 0
-    model.eval()
-
-    print("Checking accuracy...")
-
-    with torch.no_grad():
-        for x, y in tqdm(loader):
-            x = x.to(device=device)
-            y = y.to(device=device)
-
-            scores = model(x)
-            _, predictions = scores.max(1)
-            num_correct += (predictions == y).sum()
-            num_samples += predictions.size(0)
-
-        print(f'Got {num_correct} / {num_samples} with accuracy {float(num_correct) / float(num_samples) * 100}')
-
-        f1 = f1_score(y_true=y.cpu(), y_pred=predictions.cpu(),
-                      average='macro', labels=np.unique(predictions.cpu()))
-        recall = recall_score(y_true=y.cpu(), y_pred=predictions.cpu(),
-                              average='macro', labels=np.unique(predictions.cpu()))
-        precision = precision_score(y_true=y.cpu(), y_pred=predictions.cpu(),
-                                    average='macro', labels=np.unique(predictions.cpu()))
-
-        print(f'Got macro f1 {f1} with recall {recall} and precision {precision}')
-
-    model.train()
+# Load model?
+def load_checkpoint(checkpoint):
+    print("Loading checkpoint...")
+    model.load_state_dict(checkpoint['state_dict'])
+    optimizer.load_state_dict(checkpoint['optimizer'])
 
 
+if load_model:
+    load_checkpoint(torch.load("checkpoint/checkpoint.pth.tar"))
+
+# Start training
 for epoch in range(num_epochs):
     losses = []
+
+    if epoch % 3 == 0:
+        checkpoint = {'state_dict': model.state_dict(), 'optimizer': optimizer.state_dict()}
+        save_checkpoint(checkpoint, filename=f'checkpoints/resnet18_epoch {epoch}')
 
     for batch_idx, (data, targets) in tqdm(enumerate(train_loader)):
         # get data to cuda if possible
@@ -103,10 +81,14 @@ for epoch in range(num_epochs):
         optimizer.step()
 
     print(f'Epoch {epoch}: cost is {sum(losses) / len(losses)}')
-    check_accuracy(train_loader, model)
+    check_accuracy(train_loader, model, "train")
+    check_accuracy(val_loader, model, "val")
 
 print("Checking final accuracy on training set...")
-check_accuracy(train_loader, model)
+check_accuracy(train_loader, model, "final train")
 
 print("Checking final accuracy on validation set...")
-check_accuracy(val_loader, model)
+check_accuracy(val_loader, model, "final val")
+
+checkpoint = {'state_dict': model.state_dict(), 'optimizer': optimizer.state_dict()}
+save_checkpoint(checkpoint, filename=f'checkpoints/resnet18_final')
