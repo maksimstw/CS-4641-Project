@@ -11,9 +11,9 @@ device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 # Hyperparameters
 in_channel = 3
-num_classes = 183
+num_classes = 182
 learning_rate = 3e-4
-batch_size = 128
+batch_size = 32
 num_epochs = 10
 load_model = False
 
