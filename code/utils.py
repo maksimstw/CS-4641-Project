@@ -36,7 +36,7 @@ def check_accuracy(loader, model, type):
     num_samples = 0
     model.eval()
 
-    print(f"Checking {type} accuracy...")
+    print(f"Checking accuracy on {type} set...")
 
     with torch.no_grad():
         for x, y in tqdm(loader):

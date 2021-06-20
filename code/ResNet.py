@@ -31,9 +31,10 @@ data_transforms = transforms.Compose([
 dataset = RoadSignDataset(csv_file='data/labels.csv', root_dir='data/train_images',
                           transform=data_transforms)
 
-train_set, val_set = torch.utils.data.random_split(dataset, [36833, 9229])
+train_set, val_set, test_set = torch.utils.data.random_split(dataset, [36849, 4606, 4607])
 train_loader = DataLoader(dataset=train_set, batch_size=batch_size, shuffle=True)
 val_loader = DataLoader(dataset=val_set, batch_size=batch_size, shuffle=True)
+test_loader = DataLoader(dataset=test_set, batch_size=batch_size, shuffle=True)
 
 # Model
 model = models.resnet18(pretrained=True)
@@ -84,14 +85,17 @@ for epoch in range(num_epochs):
         optimizer.step()
 
     print(f'Epoch {epoch}: cost is {sum(losses) / len(losses)}')
-    check_accuracy(train_loader, model, "train")
-    check_accuracy(val_loader, model, "val")
+    check_accuracy(train_loader, model, "training")
+    check_accuracy(val_loader, model, "validation")
 
 print("Checking final accuracy on training set...")
-check_accuracy(train_loader, model, "final train")
+check_accuracy(train_loader, model, "final training")
 
 print("Checking final accuracy on validation set...")
-check_accuracy(val_loader, model, "final val")
+check_accuracy(val_loader, model, "final validation")
+
+print("Checking final accuracy on test set...")
+check_accuracy(test_loader, model, "test")
 
 checkpoint = {'state_dict': model.state_dict(), 'optimizer': optimizer.state_dict()}
 save_checkpoint(checkpoint, filename=f'checkpoints/resnet18_final')
