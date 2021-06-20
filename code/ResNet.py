@@ -11,9 +11,9 @@ device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 # Hyperparameters
 in_channel = 3
-num_classes = 182
+num_classes = 183
 learning_rate = 3e-4
-batch_size = 32
+batch_size = 128
 num_epochs = 10
 load_model = False
 
@@ -36,8 +36,11 @@ train_loader = DataLoader(dataset=train_set, batch_size=batch_size, shuffle=True
 val_loader = DataLoader(dataset=val_set, batch_size=batch_size, shuffle=True)
 
 # Model
-model = models.resnet18(pretrained=True).to(device=device)
-# model = torch.hub.load('moskomule/senet.pytorch', 'se_resnet50', num_classes=10).to(device=device)
+model = models.resnet18(pretrained=True)
+num_ftrs = model.fc.in_features
+model.fc = nn.Linear(num_ftrs, num_classes)
+model.to(device=device)
+# model = torch.hub.load('moskomule/senet.pytorch', 'se_resnet50', num_classes=182).to(device=device)
 
 # Loss and optimizer
 criterion = nn.CrossEntropyLoss()
@@ -60,7 +63,7 @@ for epoch in range(num_epochs):
 
     if epoch % 3 == 0:
         checkpoint = {'state_dict': model.state_dict(), 'optimizer': optimizer.state_dict()}
-        save_checkpoint(checkpoint, filename=f'checkpoints/resnet18_epoch {epoch}')
+        save_checkpoint(checkpoint, filename=f'checkpoints/resnet18 epoch {epoch}')
 
     for batch_idx, (data, targets) in tqdm(enumerate(train_loader)):
         # get data to cuda if possible
