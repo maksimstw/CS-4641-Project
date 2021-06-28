@@ -5,7 +5,7 @@ In recent years, there has been a rising interest in electric cars and autopilot
 Given an image of a road sign, the deep learning model needs to recognize the road sign. Since this model is for an autopilot system, the deep learning model, ideally, should be able to detect and recognize the road sign quickly and accurately. 
 
 ## **Data**
-The data is retrieved from Kaggle (https://www.kaggle.com/michaelcripman/road-sign-recognition). The dataset contains 46063 different road sign images. There are 182 different classes. The images come in different shapes and resolutions. The dataset is split into 80% for training, 10% for validation, and 10% for testing. 
+The data is retrieved from Kaggle (https://www.kaggle.com/michaelcripman/road-sign-recognition). The dataset contains 46063 different road sign images. There are 182 different types of road signs. The images come in different shapes and resolutions. The dataset is split into 80% for training, 10% for validation, and 10% for testing. 
 
 ## **Methods**
 Since all the images have different shapes and resolutions, they need to be reshaped or set paddings. The baseline model for this task would be ResNet. We would try to improve the model by implementing attention such as squeeze and excitation network (SENet). Lastly, we would also love to explore the newly developed computer vision model vision transformer (ViT) on this task. It is important to understand which task transformers are better than convolution neural networks and the reasons behind them. 
