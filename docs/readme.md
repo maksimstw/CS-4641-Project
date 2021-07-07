@@ -16,6 +16,7 @@ Pytorch’s implementations of ResNet were originally based on ImageNet, which c
 
 ### Hyperparameters, optimizer, and loss function
 |Learning Rate|3e-4|
+|---------|--------|
 |Batch Size|64|
 |Epochs|15|
 |Optimizer|Adam|
