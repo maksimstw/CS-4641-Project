@@ -22,9 +22,10 @@ Pytorch’s implementations of ResNet were originally based on ImageNet, which c
 |Epochs|15|
 |Optimizer|Adam|
 |Loss Function| Cross entropy loss|
+|||
 
 ## ** Results and Discussion**
-
+123
 
 ## **References**
 Azizov, Said. "Road Sign Recognition." Kaggle. Retrieved June 13, 2021 from https://www.kaggle.com/michaelcripman/road-sign-recognition.  
