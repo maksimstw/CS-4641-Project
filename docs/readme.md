@@ -31,8 +31,8 @@ Pytorch’s implementations of ResNet were originally based on ImageNet, which c
 |CPU|Intel Xeon E5 V3 2600|
 |RAM|32 GB|
 |OS|Ubuntu 16.04|
-|Cuda Version|10.0|
-|PyTorch Version|1.4|
+|Cuda Version|10.1|
+|PyTorch Version|1.4.0|
 |||
 
 ## **Results and Discussion**
