@@ -24,6 +24,17 @@ Pytorch’s implementations of ResNet were originally based on ImageNet, which c
 |Loss Function| Cross entropy loss|
 |||
 
+### Hardware Configuration ###
+|||
+|-----|-----|
+|GPU|Tesla V100 (16GB)|
+|CPU|Intel Xeon E5 V3 2600|
+|RAM|32 GB|
+|OS|Ubuntu 16.04|
+|Cuda Version|10|
+|Pytorch Version|1.4|
+|||
+
 ## **Results and Discussion**
 All 6 models, with or without the squeeze and excitation network, achieved promising results on this task. All of which achieved about 90% on accuracy and 85% on macro-f1 score. The recall and precision of all models were almost equal. With squeeze and excitation network implemented, all models improved their accuracy. It was also worth noticing that larger and deeper model did not guarantee the best performance. In fact, Resnet 18 with SENet implemented achieved the best results among all the other models. This was probably due to the fact that deeper models were more likely lead to overfit. This was especially the case since our dataset was not particularly large. In addition, it was also possible that our test set was simply too small compared to the training set. We only split 10% of our dataset into the test set, which only contained 4607 images. As the test set was too small, our accuracy, precision, recall, and F1 score could have a large variance. We might happen to get a really lucky or a really unlucky split.
 
