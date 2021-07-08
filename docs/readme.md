@@ -32,7 +32,7 @@ Pytorch’s implementations of ResNet were originally based on ImageNet, which c
 |RAM|32 GB|
 |OS|Ubuntu 16.04|
 |Cuda Version|10.0|
-|Pytorch Version|1.4|
+|PyTorch Version|1.4|
 |||
 
 ## **Results and Discussion**
