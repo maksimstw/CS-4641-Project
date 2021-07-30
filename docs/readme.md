@@ -48,13 +48,13 @@ All 6 models, with or without the squeeze and excitation network, achieved promi
 ![Image of ResNet50](https://raw.githubusercontent.com/maksimstw/CS_4641_Project/main/docs/images/ResNet50.png?token=AJODYZT3F7CG2MFUXKYS473A6AE5M)
 ![Image of ResNet101](https://raw.githubusercontent.com/maksimstw/CS_4641_Project/main/docs/images/ResNet101.png?token=AKHWC5CETOI5FBUHTO2IACLA572HO)
 
-In the next few weeks, we will try to fine tune the hyper parameters and did error analysis to further understand the reasons why smaller model achieved better results. In addition, smaller models with better attention mechanism might indeed be able to achieve the same performance as deeper models. Hence, the seek for better attention mechanism besides squeeze and excitation network was also worth exploring. Furthermore, an early stopping technique could also be implemented to prevent overfitting. Currently, all 6 models finished training after a total of 15 epochs, which could be to many for a small dataset and resulted in overfitting. To prevent this, we can implement an early stoping technique. For example, if the f1 score decreased consecutively for 3 epochs, we might be able to assume that the model started to overfit, and thus we should terminate the training earlier. 
+In the future, we can try to fine tune the hyper parameters and did error analysis to further understand the reasons why smaller model achieved better results. In addition, smaller models with better attention mechanism might indeed be able to achieve the same performance as deeper models. Hence, the seek for better attention mechanism besides squeeze and excitation network was also worth exploring. Furthermore, an early stopping technique could also be implemented to prevent overfitting. Currently, all 6 models finished training after a total of 15 epochs, which could be to many for a small dataset and resulted in overfitting. To prevent this, we can implement an early stoping technique. For example, if the f1 score decreased consecutively for 3 epochs, we might be able to assume that the model started to overfit, and thus we should terminate the training earlier. 
 
 ## **References**
-Azizov, Said. "Road Sign Recognition." Kaggle. Retrieved June 13, 2021 from https://www.kaggle.com/michaelcripman/road-sign-recognition.  
-Dosovitskiy, Alexey, et al. "An image is worth 16x16 words: Transformers for image recognition at scale." arXiv preprint arXiv:2010.11929 (2020).   
+Azizov, Said. "Road Sign Recognition." Kaggle. Retrieved June 13, 2021 from https://www.kaggle.com/michaelcripman/road-sign-recognition.   
 He, Kaiming, et al. "Deep residual learning for image recognition." Proceedings of the IEEE conference on computer vision and pattern recognition. 2016.  
 Hu, Jie, Li Shen, and Gang Sun. "Squeeze-and-excitation networks." Proceedings of the IEEE conference on computer vision and pattern recognition. 2018.
+Krizhevsky, et al. "ImageNet Classification with Deep Convolutional Neural Networks." 2012.
 
 ## **Author**
 | Name        | Email                |  
