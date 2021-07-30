@@ -45,17 +45,15 @@ Pytorch’s implementations of ResNet were originally based on ImageNet, which c
 
 ## **Results and Discussion**
 All 6 models, with or without the squeeze and excitation network, achieved promising results on this task. All of which achieved about 90% on accuracy and 85% on macro-f1 score. The recall and precision of all models were almost equal. With squeeze and excitation network implemented, all models improved their accuracy. It was also worth noticing that larger and deeper model did not guarantee the best performance. In fact, Resnet 18 with SENet implemented achieved the best results among all the other models. This was probably due to the fact that deeper models were more likely lead to overfit. This was especially the case since our dataset was not particularly large. In addition, it was also possible that our test set was simply too small compared to the training set. We only split 10% of our dataset into the test set, which only contained 4607 images. As the test set was too small, our accuracy, precision, recall, and F1 score could have a large variance. We might happen to get a really lucky or a really unlucky split.
-![Image of ResNet Table](https://raw.githubusercontent.com/maksimstw/CS_4641_Project/main/docs/images/ResNet_Table.png?token=AJODYZR27XOUFII3FINI3S3A57VNY)
-![Image of ResNet18](https://raw.githubusercontent.com/maksimstw/CS_4641_Project/main/docs/images/ResNet18.png?token=AKHWC5HQXSF3R5UDWHLES5LA572EQ)
-![Image of ResNet50](https://raw.githubusercontent.com/maksimstw/CS_4641_Project/main/docs/images/ResNet50.png?token=AJODYZT3F7CG2MFUXKYS473A6AE5M)
-![Image of ResNet101](https://raw.githubusercontent.com/maksimstw/CS_4641_Project/main/docs/images/ResNet101.png?token=AKHWC5CETOI5FBUHTO2IACLA572HO)
+![data](images/all.png)
+![table](images/table.png)
 
 In the future, we can try to fine tune the hyper parameters and did error analysis to further understand the reasons why smaller model achieved better results. In addition, smaller models with better attention mechanism might indeed be able to achieve the same performance as deeper models. Hence, the seek for better attention mechanism besides squeeze and excitation network was also worth exploring. Furthermore, an early stopping technique could also be implemented to prevent overfitting. Currently, all 6 models finished training after a total of 15 epochs, which could be to many for a small dataset and resulted in overfitting. To prevent this, we can implement an early stoping technique. For example, if the f1 score decreased consecutively for 3 epochs, we might be able to assume that the model started to overfit, and thus we should terminate the training earlier. 
 
 ## **References**
-Azizov, Said. "Road Sign Recognition." Kaggle. Retrieved June 13, 2021 from https://www.kaggle.com/michaelcripman/road-sign-recognition.   
-He, Kaiming, et al. "Deep residual learning for image recognition." Proceedings of the IEEE conference on computer vision and pattern recognition. 2016.  
-Hu, Jie, Li Shen, and Gang Sun. "Squeeze-and-excitation networks." Proceedings of the IEEE conference on computer vision and pattern recognition. 2018.
+Azizov, Said. "Road Sign Recognition." Kaggle. Retrieved June 13, 2021 from https://www.kaggle.com/michaelcripman/road-sign-recognition.
+He, Kaiming, et al. "Deep residual learning for image recognition." Proceedings of the IEEE conference on computer vision and pattern recognition. 2016.  <br>
+Hu, Jie, Li Shen, and Gang Sun. "Squeeze-and-excitation networks." Proceedings of the IEEE conference on computer vision and pattern recognition. 2018.<br>
 Krizhevsky, et al. "ImageNet Classification with Deep Convolutional Neural Networks." 2012.
 
 ## **Author**
