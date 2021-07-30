@@ -10,12 +10,13 @@ The data was retrieved from Kaggle (https://www.kaggle.com/michaelcripman/road-s
 ## **Methods**
 ### Residual Network (ResNet)
 The baseline model for this task was ResNet. We used Pytorch team's implementations of ResNet 18, ResNet 50, and ResNet 101. There were only 182 different classes in our custom dataset, so the last fully connected layer of the original implementation was modified. Compared to traditional image classification architecutre such as convolutional neural network (CNN), ResNet implemented with double or triple layer skips that contain nonlinearities (ReLU) and batch normalization in between. Skip connections avoid the problem of vanishing gradients and accuracy saturation.
-![alt text](images/resnet.png)
-![alt text](images/resnet full.png)
+![ResNet](images/resnet_new.png)
 
 ### Squeeze and Excitation Network (SENet)
 Squeeze and excitation network (SENet) was implemented to improve the performance of ResNet. SENet was a type of attention mechanism. Additional parameters were added to every
 channel of a convolutional block so that the network can adaptively adjust the weighting of every feature map.
+![SENet](images/senet.png)
+![SEModule](images/senet_module.png)
 
 ### Data Preprocessing
 Pytorch’s implementations of ResNet were originally based on ImageNet, which contained 1000 different image classes. All of the images had a resolution of 224x224. However, since all the road sign images came in different shapes and resolutions, they first need to be reshaped in order to be fed into ResNet properly. We first used transforms.RandomResizedCrop to randomly scale and crop the images to the proper shape. Next, we normalized the images to ensure our models converge properly and efficiently (by using mean = [0.485, 0.456, 0.406], std = [0.229, 0.224, 0.225]). 
