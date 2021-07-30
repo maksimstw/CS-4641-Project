@@ -9,7 +9,8 @@ The data was retrieved from Kaggle (https://www.kaggle.com/michaelcripman/road-s
 
 ## **Methods**
 ### Residual Network (ResNet)
-The baseline model for this task was ResNet. We used Pytorch team's implementations of ResNet 18, ResNet 50, and ResNet 101. There were only 182 different classes in our custom dataset, so the last fully connected layer of the original implementation was modified. Compared to traditional image classification architecutre such as convolutional neural network (CNN), ResNet implemented with double or triple layer skips that contain nonlinearities (ReLU) and batch normalization in between. Skip connections avoid the problem of vanishing gradients and accuracy saturation. 
+The baseline model for this task was ResNet. We used Pytorch team's implementations of ResNet 18, ResNet 50, and ResNet 101. There were only 182 different classes in our custom dataset, so the last fully connected layer of the original implementation was modified. Compared to traditional image classification architecutre such as convolutional neural network (CNN), ResNet implemented with double or triple layer skips that contain nonlinearities (ReLU) and batch normalization in between. Skip connections avoid the problem of vanishing gradients and accuracy saturation.
+![alt text](images/resnet.png)
 
 ### Squeeze and Excitation Network (SENet)
 Squeeze and excitation network (SENet) was implemented to improve the performance of ResNet. SENet was a type of attention mechanism. Additional parameters were added to every
