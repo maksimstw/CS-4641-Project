@@ -1,5 +1,4 @@
-## Road Sign Detection Project
-This is the final class project for Georgia Tech CS 4641.
+# **Road Sign Detection Project**
 
 ## **Background**
 In recent years, there has been a rising interest in electric cars and autopilots. As with any vehicle, an autonomous vehicle cannot merely follow the information on the map. It also needs to actively adapt to the changing road conditions. Most of the conditions are conveyed through road signs, and thus an autopilot system must be able to detect and understand road signs both quickly and accurately. This research project tries to implement the state-of-the-art computer vision algorithm residual networks (ResNet) and finetune it specifically for road sign detection. 
