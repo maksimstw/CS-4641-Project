@@ -51,7 +51,7 @@ All 6 models, with or without the squeeze and excitation network, achieved promi
 In the future, we can try to fine tune the hyper parameters and did error analysis to further understand the reasons why smaller model achieved better results. In addition, smaller models with better attention mechanism might indeed be able to achieve the same performance as deeper models. Hence, the seek for better attention mechanism besides squeeze and excitation network was also worth exploring. Furthermore, an early stopping technique could also be implemented to prevent overfitting. Currently, all 6 models finished training after a total of 15 epochs, which could be to many for a small dataset and resulted in overfitting. To prevent this, we can implement an early stoping technique. For example, if the f1 score decreased consecutively for 3 epochs, we might be able to assume that the model started to overfit, and thus we should terminate the training earlier. 
 
 ## **References**
-Azizov, Said. "Road Sign Recognition." Kaggle. Retrieved June 13, 2021 from https://www.kaggle.com/michaelcripman/road-sign-recognition.
+Azizov, Said. "Road Sign Recognition." Kaggle. Retrieved June 13, 2021 from https://www.kaggle.com/michaelcripman/road-sign-recognition. <br>
 He, Kaiming, et al. "Deep residual learning for image recognition." Proceedings of the IEEE conference on computer vision and pattern recognition. 2016.  <br>
 Hu, Jie, Li Shen, and Gang Sun. "Squeeze-and-excitation networks." Proceedings of the IEEE conference on computer vision and pattern recognition. 2018.<br>
 Krizhevsky, et al. "ImageNet Classification with Deep Convolutional Neural Networks." 2012.
